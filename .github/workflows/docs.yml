@@ -39,7 +39,9 @@ jobs:
         run: npm ci --prefix docs
 
       - name: Generate Doxygen XML
-        run: doxygen Doxyfile
+        run: |
+          cmake -E make_directory build/doxygen
+          doxygen Doxyfile
 
       - name: Build Sourcey site
         run: npm run --prefix docs build

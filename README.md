@@ -107,6 +107,7 @@ Requirements are Doxygen and Node.js 22.12 or newer. Doxygen parses headers unde
 into a static site.
 
 ```shell
+cmake -E make_directory build/doxygen
 doxygen Doxyfile
 npm ci --prefix docs
 npm run --prefix docs build

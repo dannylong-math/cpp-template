@@ -17,6 +17,7 @@ From the repository root, generate the Doxygen XML and then build the Sourcey
 site:
 
 ```shell
+cmake -E make_directory build/doxygen
 doxygen Doxyfile
 npm ci --prefix docs
 npm run --prefix docs build
