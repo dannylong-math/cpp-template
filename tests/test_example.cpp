@@ -1,7 +1,8 @@
 #include <boost/ut.hpp>
 
-using namespace boost::ut;
+int main()
+{
+    using namespace boost::ut;
 
-"1 + 1 = 2"_test = [] {
-    expect(1 + 1 == 2_i);
-};
+    "1 + 1 = 2"_test = [] { expect(1 + 1 == 2_i); };
+}
