@@ -22,7 +22,7 @@
       "inherits": "base",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_CXX_FLAGS_RELEASE": "-O3 -march=native -DNDEBUG"
+        "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG"
       }
     },
     {
@@ -40,7 +40,16 @@
       "inherits": "base",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_CXX_FLAGS_RELEASE": "-O3 -march=native -DNDEBUG -fno-math-errno -fno-trapping-math -fno-signed-zeros -fassociative-math -freciprocal-math"
+        "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG -fno-math-errno -fno-trapping-math -fno-signed-zeros -fassociative-math -freciprocal-math"
+      }
+    },
+    {
+      "name": "benchmark",
+      "displayName": "Benchmarks",
+      "inherits": "release",
+      "cacheVariables": {
+        "BUILD_TESTING": "OFF",
+        "BUILD_BENCHMARKS": "ON"
       }
     }
   ],
@@ -48,7 +57,8 @@
     { "name": "debug",       "configurePreset": "debug"       },
     { "name": "debug-tidy",  "configurePreset": "debug-tidy"  },
     { "name": "release",     "configurePreset": "release"     },
-    { "name": "release-max", "configurePreset": "release-max" }
+    { "name": "release-max", "configurePreset": "release-max" },
+    { "name": "benchmark",   "configurePreset": "benchmark"   }
   ],
   "testPresets": [
     { "name": "debug",       "configurePreset": "debug",       "output": { "outputOnFailure": true } },

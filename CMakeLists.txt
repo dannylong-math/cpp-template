@@ -47,6 +47,22 @@ if(ENABLE_SANITIZERS)
     )
 endif()
 
+# Coverage — intended for test builds, enabled by the coverage CI job
+add_library(${PROJECT_NAME}_coverage INTERFACE)
+option(ENABLE_COVERAGE "Instrument tests for code coverage" OFF)
+if(ENABLE_COVERAGE)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        target_compile_options(${PROJECT_NAME}_coverage INTERFACE
+            --coverage
+            -O0
+            -g
+        )
+        target_link_options(${PROJECT_NAME}_coverage INTERFACE --coverage)
+    else()
+        message(FATAL_ERROR "ENABLE_COVERAGE requires GCC or Clang")
+    endif()
+endif()
+
 # clang-tidy — enable with ENABLE_CLANG_TIDY=ON or add to a preset
 option(ENABLE_CLANG_TIDY "Run clang-tidy during compilation" OFF)
 if(ENABLE_CLANG_TIDY)
@@ -69,4 +85,9 @@ option(BUILD_TESTING "Build tests" ON)
 if(BUILD_TESTING)
     enable_testing()
     add_subdirectory(tests)
+endif()
+
+option(BUILD_BENCHMARKS "Build Google Benchmark executables" OFF)
+if(BUILD_BENCHMARKS)
+    add_subdirectory(benchmark)
 endif()
